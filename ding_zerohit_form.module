@@ -1,0 +1,73 @@
+<?php
+/**
+* @file
+* Module to show a form when a Ting search returns 0 (zero) hits
+*/
+
+
+/**
+* Implementation of hook_ctools_plugin_directory().
+*
+* Tells CTools (and thus Panels) where to look for plugin code.
+*/
+function ding_zerohit_form_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools' || $module == 'panels') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+
+/**
+* Implementation of hook_init().
+*/
+function ding_zerohit_form_init() {
+  drupal_add_js(drupal_get_path('module', 'ding_zerohit_form') . '/js/ding_zerohit_form.js', 'module', 'footer', TRUE);
+}
+
+
+/**
+* Implementation of hook_menu().
+*
+* @return array
+*/
+function ding_zerohit_form_menu() {
+  // Get the module path
+  $path = drupal_get_path('module', 'ding_zerohit_form') . '/includes';
+
+  $items = array();
+
+  $items['ding/zerohitform/%'] = array(
+    'title' => 'Ding zerohit form',
+    'description' => 'Returns a form for user submission in response to a zero-hit search result',
+    'page callback' => 'ding_zerohit_form_display_zerohit_form',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+  );
+
+  $items['admin/settings/ting/zerohitform'] = array(
+    'title' => t('Zero-hit form'),
+    'description' => t('Settings for the zero-hit form'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ding_zerohit_form_settings_form'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'ding_zerohit_form.admin.inc',
+    'file path' => $path,
+  );
+  
+  return $items;
+}
+
+
+/*
+ * Function returning the webform configured as the zero-hit form
+ */
+function ding_zerohit_form_display_zerohit_form() { 
+  $webform_vars = variable_get('ding_zerohit_form', array());
+  if (isset($webform_vars['webform_id'])) {
+    $webform = webform_block_view($delta = 'client-block-' . $webform_vars['webform_id']);
+    print $webform['content'];
+  } else {
+    print t("No zero-hit form to show - go configure Ding Zero-hit form at <a href="@url">@url</a>.", array('!url' => url("admin/settings/ting/zerohitform", array('absolute' => TRUE))));
+  }
+}

@@ -1,0 +1,7 @@
+name = Ding! Zero-hit form
+description = Show a form when a Ting search returns 0 (zero) hits
+package = Ding!
+core = 6.x
+
+configure = admin/settings/ting/zerohitform
+dependencies[] = webform
