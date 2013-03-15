@@ -15,7 +15,6 @@ jQuery(document).ready(function($) {
           // Get search string from URL
           var href = window.location.href;
           var searchStr = href.substr(href.lastIndexOf('/') + 1);
-          alert(searchStr);
           
           // Load up the zerohit form into the ting-result box
           $('#ting-result').load('/ding/zerohitform/'+searchStr+'?search='+searchStr);
