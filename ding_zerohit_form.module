@@ -42,8 +42,8 @@ function ding_zerohit_form_menu() {
   );
 
   $items['admin/settings/ting/zerohitform'] = array(
-    'title' => t('Zero-hit form'),
-    'description' => t('Settings for the zero-hit form'),
+    'title' => 'Zero-hit form',
+    'description' => 'Settings for the zero-hit form',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('ding_zerohit_form_settings_form'),
     'access arguments' => array('administer site configuration'),

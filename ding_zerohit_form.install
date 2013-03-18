@@ -232,9 +232,9 @@ function _create_zerohit_form() {
     // Put webform node id in a variable for use in the module
     variable_set('ding_zerohit_form', array('installed_webform_id' => $webform_id, 'webform_id' => $webform_id));
 
-    drupal_set_message(t("Node ".$node->title." added correctly"));
+    drupal_set_message(t("Node @nodetitle added correctly", array(@nodetitle => $node->title)));
   }
   else {
-    drupal_set_message(t("Node ".$node->title." added incorrectly"), "error");
+    drupal_set_message(t("Node @nodetitle added incorrectly", array(@nodetitle => $node->title)), "error");
   }
 }
