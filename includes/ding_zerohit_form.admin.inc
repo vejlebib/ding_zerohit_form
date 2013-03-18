@@ -12,12 +12,12 @@ function ding_zerohit_form_settings_form($form_state) {
 
   // Build the form
   $form = array();
-  
+
   $form['ding_zerohit_form'] = array(
     '#type' => 'fieldset',
     '#title' => t('Zero-hit form'),
     '#required' => TRUE,
-    '#description' => t(''),
+    '#description' => t('admin settings for zero-hit form'),
     '#tree' => TRUE,
   );
 
@@ -33,7 +33,7 @@ function ding_zerohit_form_settings_form($form_state) {
       }
     }
   }
-  
+
   $form['ding_zerohit_form']['webform_id'] = array(
     '#type' => 'select',
     '#title' => t('Webform ID'),
@@ -44,86 +44,4 @@ function ding_zerohit_form_settings_form($form_state) {
   );
 
   return system_settings_form($form);
-}
-
-/**
- * Submit handler for the administration forms. It preformces basic clean up
- * and hands the form to systemt settings submit.
- *
- * @param array $form
- * @param array $form_state
- */
-function ting_proxy_settings_form_submit($form, &$form_state) {
-  // Remove add hostname button
-  unset($form_state['values']['ting_proxy']['hostnames']['add_hostname']);
-
-  // Remove elements that have been marked as deleted
-  foreach ($form_state['values']['ting_proxy']['hostnames'] as $key => $value) {
-    if ($value['deleted']) {
-      unset($form_state['values']['ting_proxy']['hostnames'][$key]);
-    }
-  }
-
-  // Return control to system settings form submit.
-  system_settings_form_submit($form, $form_state);
-}
-
-/**
- * Handels addition of extra ting_proxy_hostname elements via ahah to the
- * adminitration UI.
- *
- * @param array $form
- * @param array $form_state
- */
-function ting_proxy_add_hostname_ahah($form, &$form_state) {
-
-  $form_state = array('submitted' => FALSE);
-  $form_build_id = $_POST['form_build_id'];
-
-  // Drupal is not aware of this new elements existence and will not
-  // process it. We retreive the cached form, add the element, and resave.
-  $form = form_get_cache($form_build_id, $form_state);
-
-  // Add one to the current highest delta value to get the next one.
-  $delta = max(element_children($form['ting_proxy']['hostnames'])) + 1;
-
-  // Added field and update form cache
-  $form['ting_proxy']['hostnames'][$delta] = array(
-    '#type' => 'ting_proxy_hostname',
-    '#default_value' => '',
-  );
-  form_set_cache($form_build_id, $form, $form_state);
-
-  // Reset form vars
-  $form += array(
-    '#post' => $_POST,
-    '#programmed' => FALSE,
-  );
-
-  // Rebuild the form.
-  $form = form_builder($_POST['form_id'], $form, $form_state);
-
-  // Render and return the new field.
-  drupal_json(array(
-    'data' => drupal_render($form['ting_proxy']['hostnames'][$delta]),
-    'status' => TRUE));
-  exit();
-}
-
-/**
- * Addes custom ccs and js script to the administration form. It's done this way
- * as it's add to the forms validation as well.
- *
- * @param array $form
- * @param array $form_state
- * @return array $form
- */
-function ting_proxy_settings_form_after_build($form, &$form_state) {
-  // Add form styling
-  drupal_add_css(drupal_get_path('module', 'ting_proxy') .'/css/ting_proxy.css', 'module', 'all', FALSE);
-
-  // Add js
-  drupal_add_js(drupal_get_path('module', 'ting_proxy'). '/js/ting_proxy.admin.js');
-
-  return $form;
 }
