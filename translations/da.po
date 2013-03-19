@@ -1,0 +1,155 @@
+# $Id$
+#
+# Danish translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  ding_zerohit_form.module: n/a
+#  ding_zerohit_form.install: n/a
+#  includes/ding_zerohit_form.admin.inc: n/a
+#  ding_zerohit_form.info: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2013-03-19 11:23+0100\n"
+"PO-Revision-Date: 2013-03-19 11:23+0100\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: ding_zerohit_form.module:67
+msgid "No zero-hit form to show - go <a href=\"@url\">configure Ding Zero-hit form</a>."
+msgstr ""
+"Ingen nul-hits formular at vise - gå til <a href=\"@url\">indstilling "
+"af Ding Nul-hits formular</a>."
+
+#: ding_zerohit_form.module:37
+msgid "Ding zerohit form"
+msgstr "Ding nul-hits formular"
+
+#: ding_zerohit_form.module:38
+msgid "Returns a form for user submission in response to a zero-hit search result"
+msgstr ""
+"Viser en formular til brugeren efter et søgeresultat har givet nul "
+"hits"
+
+#: ding_zerohit_form.module:45 ding_zerohit_form.install:39 includes/ding_zerohit_form.admin.inc:18
+msgid "Zero-hit form"
+msgstr "Nul-hits formular"
+
+#: ding_zerohit_form.module:46
+msgid "Settings for the zero-hit form"
+msgstr "Indstillinger for nul-hits formular"
+
+#: ding_zerohit_form.install:62
+msgid "Markup text"
+msgstr "Markup tekst"
+
+#: ding_zerohit_form.install:64
+msgid "No results where found in the library collection in response to your search %get[q], but help is near!"
+msgstr ""
+
+#: ding_zerohit_form.install:64
+msgid "You can try the national service <a href=\"http://bibliotek.dk\">Bibliotek.dk</a>"
+msgstr ""
+"Du kan prøve den landsdækkende <a "
+"href=\"http://bibliotek.dk\">Bibliotek.dk</a>"
+
+#: ding_zerohit_form.install:64
+msgid "or you can have the library staff help you:"
+msgstr "eller du kan få bibliotekets personale til at hjælpe dig:"
+
+#: ding_zerohit_form.install:77
+msgid "Description by user"
+msgstr "Brugerens beskrivelse"
+
+#: ding_zerohit_form.install:82
+msgid "Please describe here what you where searching for"
+msgstr "Beskriv her, hvad du søgte"
+
+#: ding_zerohit_form.install:96
+msgid "Name of user"
+msgstr "Brugers navn"
+
+#: ding_zerohit_form.install:114
+msgid "Users E-mail"
+msgstr "Brugers e-mail"
+
+#: ding_zerohit_form.install:121
+msgid "Your e-mail *"
+msgstr "Din e-mail *"
+
+#: ding_zerohit_form.install:132
+msgid "PIN / Card no."
+msgstr "CPR / kortnr."
+
+#: ding_zerohit_form.install:143
+msgid "Your PIN or card number"
+msgstr "Dit CPR- eller kortnummer"
+
+#: ding_zerohit_form.install:157
+msgid "Users phone no."
+msgstr "Brugers tlf.nr."
+
+#: ding_zerohit_form.install:164
+msgid "Your phone no."
+msgstr "Dit tlf.nr."
+
+#: ding_zerohit_form.install:175
+msgid "Markup Text 2"
+msgstr "Markup tekst 2"
+
+#: ding_zerohit_form.install:177
+msgid "Fields marked * are required."
+msgstr "Felter med * skal udfyldes."
+
+#: ding_zerohit_form.install:177
+msgid "We will respond to your question as soon as possible."
+msgstr ""
+
+#: ding_zerohit_form.install:189
+msgid "Thank you for your question. We will respond to your question as soon as possible."
+msgstr ""
+"Tak for dit spørgsmål. Din henvendelse vil blive besvaret så "
+"hurtigt som muligt."
+
+#: ding_zerohit_form.install:224
+msgid "Submission from user after zero-hit search"
+msgstr "Henvendelse fra bruger efter nul-hits søgning"
+
+#: ding_zerohit_form.install:235
+msgid "Node @nodetitle added correctly"
+msgstr "Node @nodetitle tilføjet korrekt"
+
+#: ding_zerohit_form.install:238
+msgid "Node @nodetitle added incorrectly"
+msgstr "Node @nodetitle blev IKKE tilføjet korrekt"
+
+#: ding_zerohit_form.info:0
+msgid "Ding! Zero-hit form"
+msgstr "Ding! Nul-hits formular"
+
+#: ding_zerohit_form.info:0
+msgid "Show a form when a Ting search returns 0 (zero) hits"
+msgstr "Visning af formular når en Ting søgning returnerer 0 (nul) hits"
+
+#: ding_zerohit_form.info:0
+msgid "Ding!"
+msgstr "Ding!"
+
+#: includes/ding_zerohit_form.admin.inc:20
+msgid "admin settings for zero-hit form"
+msgstr "administrator indstillinger for nul-hits formular"
+
+#: includes/ding_zerohit_form.admin.inc:39
+msgid "Webform ID"
+msgstr ""
+
+#: includes/ding_zerohit_form.admin.inc:42
+msgid "Webform to use as zero-hit form"
+msgstr "Webformular (webform) der anvendes til nul-hits formular"
+
