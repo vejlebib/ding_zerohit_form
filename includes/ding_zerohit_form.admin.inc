@@ -38,7 +38,7 @@ function ding_zerohit_form_settings_form($form_state) {
     '#type' => 'select',
     '#title' => t('Webform ID'),
     '#options' => $webform_nodes,
-    '#default_value' => isset($values['webform_id']) ? $values['webform_id'] : NULL, //Get standard zero-hit form from a variable. TODO: create this variable during module install
+    '#default_value' => isset($values['webform_id']) ? $values['webform_id'] : NULL,
     '#description' => t('Webform to use as zero-hit form'),
     '#required' => TRUE,
   );
