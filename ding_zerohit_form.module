@@ -82,16 +82,29 @@ function ding_zerohit_form_display_zerohit_form() {
  */
 function _zerohit_confirmation() {
   $sid = isset($_GET['sid']) ? $_GET['sid'] : NULL;
-  return theme('zerohit_confirmation', $sid);
+  $values = variable_get('ding_zerohit_form', array());
+  include_once(drupal_get_path('module', 'webform') . '/includes/webform.submissions.inc');
+
+  if ($values['webform_id']) {
+    // Data on the this submission of the zerohit form
+    $submission = webform_get_submission($values['webform_id'], $sid, FALSE);
+
+    // Confirmation message from current zerohit form
+    $webform_node = node_load($values['webform_id']);
+    //$confirmation_message = 'hello from current zerohit form';
+
+    return theme('zerohit_confirmation', $webform_node, $submission);
+  }
 }
 
 /**
  * Prepare for theming of the zerohit form submission confirmation.
  */
 function template_preprocess_zerohit_confirmation(&$vars) {
-  //$confirmation = check_markup($vars['node']->webform['confirmation'], $vars['node']->webform['confirmation_format'], FALSE);
-  // Strip out empty tags added by WYSIWYG editors if needed.
-  $vars['confirmation_message'] = 'hello - ZEROHIT!!';
+  $confirmation = check_markup($vars['webform_node']->webform['confirmation'], $vars['node']->webform['confirmation_format'], FALSE);
+  $vars['confirmation_message'] = $confirmation;
+  $vars['user_description'] = check_plain($vars['submission']->data[2]['value'][0]);
+  $vars['user_name'] = check_plain($vars['submission']->name);
 }
 
 /*
@@ -101,8 +114,9 @@ function ding_zerohit_form_theme() {
   $items = array(
     'zerohit_confirmation' => array(
       'arguments' => array(
-        'sid' => NULL,
-        ),
+        'webform_node' => array(),
+        'submission' => array(),
+      ),
       'template' => 'zerohit-confirmation',
     ),
   );
