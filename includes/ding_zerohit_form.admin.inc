@@ -17,7 +17,6 @@ function ding_zerohit_form_settings_form($form_state) {
     '#type' => 'fieldset',
     '#title' => t('Zero-hit form'),
     '#required' => TRUE,
-    '#description' => t('admin settings for zero-hit form'),
     '#tree' => TRUE,
   );
 
@@ -41,6 +40,11 @@ function ding_zerohit_form_settings_form($form_state) {
     '#default_value' => isset($values['webform_id']) ? $values['webform_id'] : NULL,
     '#description' => t('Webform to use as zero-hit form'),
     '#required' => TRUE,
+  );
+
+  $form['ding_zerohit_form']['edit_info'] = array(
+    '#title' => t('Editing webforms'),
+    '#value' => '<p>' . t('Any webform configured can be used as the zero-hit form. Sample webforms have been provided with this module. The zero-hit forms and other webforms can be configured at <a href="@content-webforms">admin/content/webform</a>', array('@content-webforms' => url('admin/content/webform', array('absolute' => TRUE)))) . '</p>',
   );
 
   return system_settings_form($form);
