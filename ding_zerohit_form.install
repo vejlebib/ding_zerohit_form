@@ -32,8 +32,8 @@ function ding_zerohit_form_uninstall() {
 }
 
 /**
- * Function to create webform used by ding_zerohit_form. 
- * 
+ * Function to create webform used by ding_zerohit_form.
+ *
  * Parameters:
  * $lang: language code. Only supports "da" (danish). By default all string are in english.
  */
@@ -188,12 +188,12 @@ function _create_zerohit_form($lang) {
       'page_num' => 1,
     ),
   );
-  
+
   // Enter webform array.
   $node->webform = array(
     'confirmation' => ($lang == 'da' ? '<p>Tak for dit spørgsmål. Din henvendelse vil blive besvaret så hurtigt som muligt.</p>' : '<p>Thank you for your question. We will respond to your question as soon as possible.</p>'),
     'confirmation_format' => 1,
-    'redirect_url' => '<confirmation>',
+    'redirect_url' => 'ting/zerohit',
     'status' => '1',
     'block' => '0',
     'teaser' => '0',
