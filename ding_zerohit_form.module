@@ -52,6 +52,15 @@ function ding_zerohit_form_menu() {
     'file path' => $path,
   );
 
+  // Zero-hit form confirmation page
+  $items['ting/zerohit'] = array(
+    'title' => 'Zero-hit confirmation',
+    'page callback' => '_zerohit_confirmation',
+    'access callback' => 'node_access',
+    'access arguments' => array('view', 1),
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
 }
 
@@ -66,4 +75,37 @@ function ding_zerohit_form_display_zerohit_form() {
   } else {
     print t('No zero-hit form to show - go <a href="@url">configure Ding Zero-hit form</a>.', array('@url' => url("admin/settings/ting/zerohitform", array('absolute' => TRUE))));
   }
+}
+
+/**
+ * Prints the confirmation message after a successful submission.
+ */
+function _zerohit_confirmation() {
+  $sid = isset($_GET['sid']) ? $_GET['sid'] : NULL;
+  return theme('zerohit_confirmation', $sid);
+}
+
+/**
+ * Prepare for theming of the zerohit form submission confirmation.
+ */
+function template_preprocess_zerohit_confirmation(&$vars) {
+  //$confirmation = check_markup($vars['node']->webform['confirmation'], $vars['node']->webform['confirmation_format'], FALSE);
+  // Strip out empty tags added by WYSIWYG editors if needed.
+  $vars['confirmation_message'] = 'hello - ZEROHIT!!';
+}
+
+/*
+* Implements hook_theme().
+*/
+function ding_zerohit_form_theme() {
+  $items = array(
+    'zerohit_confirmation' => array(
+      'arguments' => array(
+        'sid' => NULL,
+        ),
+      'template' => 'zerohit-confirmation',
+    ),
+  );
+
+  return $items;
 }
