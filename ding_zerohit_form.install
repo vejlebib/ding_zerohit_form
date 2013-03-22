@@ -66,7 +66,7 @@ function _create_zerohit_form($lang) {
       'form_key' => 'markup_text',
       'name' => ($lang == 'da' ? 'Markup tekst' : 'Markup text'),
       'type' => 'markup',
-      'value' => ($lang == 'da' ? '<h3>Der blev ikke fundet nogen materialer i biblioteksbasen på din søgning ("%get[q]"), men hjælpen er nær!</h3><ul><li>Du kan prøve den landsdækkende <a href="http://bibliotek.dk">Bibliotek.dk</a></li><li style="font-weight: bold;">eller du kan få bibliotekets personale til at hjælpe dig:</li></ul>' : '<h3>No results where found in the library collection in response to your search %get[q], but help is near!</h3><ul><li>You can try the national service <a href="http://bibliotek.dk">Bibliotek.dk</a></li><li style="font-weight: bold;">or you can have the library staff help you:</li></ul>'),
+      'value' => ($lang == 'da' ? '<h3>Der blev ikke fundet nogen materialer i biblioteksbasen på din søgning ("%get[search]"), men hjælpen er nær!</h3><ul><li>Du kan prøve den landsdækkende <a href="http://bibliotek.dk">Bibliotek.dk</a></li><li style="font-weight: bold;">eller du kan få bibliotekets personale til at hjælpe dig:</li></ul>' : '<h3>No results where found in the library collection in response to your search %get[search], but help is near!</h3><ul><li>You can try the national service <a href="http://bibliotek.dk">Bibliotek.dk</a></li><li style="font-weight: bold;">or you can have the library staff help you:</li></ul>'),
       'extra' => array(
         'format' => FILTER_FORMAT_DEFAULT,
         'private' => FALSE,
