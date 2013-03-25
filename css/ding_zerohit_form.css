@@ -1,0 +1,50 @@
+#ting-result .webform-client-form {
+  margin: 0 1em;
+  width: 90%;
+  }
+
+#ting-result .webform-client-form li {
+  list-style: disc outside none;
+  margin: 0 1em;
+  }
+
+#ting-result .webform-component .form-item {
+  padding: 0.3em 0;
+  }
+
+#ting-result .webform-component-markup {
+  background: url(../img/helping-hand.jpg) no-repeat scroll 0 0 transparent;
+  margin-bottom: 1em;
+  padding-left: 45%;
+  }
+
+#ting-result .webform-component-textarea {
+  float: left;
+  width: 40%;
+  }
+
+#ting-result .webform-client-form textarea {
+  height: 12em;
+  width: 100%;
+  }
+
+#ting-result .webform-client-form .form-text {
+  float: right;
+  margin-left: 1em;
+  width: 50%;
+  }
+
+#ting-result .webform-component-textfield, #ting-result .webform-component-email {
+  margin-left: 45%;
+  width: 55%;
+  }
+
+#ting-result .webform-component-display {
+  clear: both;
+  padding-top: 2em;
+  }
+
+#ting-result .form-submit {
+  height: 3em;
+  width: 40%;
+} 

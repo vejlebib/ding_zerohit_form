@@ -20,6 +20,7 @@ function ding_zerohit_form_ctools_plugin_directory($module, $plugin) {
 */
 function ding_zerohit_form_init() {
   drupal_add_js(drupal_get_path('module', 'ding_zerohit_form') . '/js/ding_zerohit_form.js', 'module', 'footer', TRUE);
+  drupal_add_css(drupal_get_path('module', 'ding_zerohit_form') .'/css/ding_zerohit_form.css');
 }
 
 /**
