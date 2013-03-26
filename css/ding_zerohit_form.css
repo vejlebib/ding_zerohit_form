@@ -34,9 +34,15 @@
   width: 50%;
   }
 
-#ting-result .webform-component-textfield, #ting-result .webform-component-email {
+#ting-result .webform-component-textfield, 
+#ting-result .webform-component-email {
   margin-left: 45%;
   width: 55%;
+  }
+
+#ting-result .webform-component-textfield .form-description, 
+#ting-result .webform-component-email .form-description {
+  width: 45%;
   }
 
 #ting-result .webform-component-display {
