@@ -12,9 +12,6 @@ jQuery(document).ready(function($) {
       if (Drupal.tingSearch.summary.ting) {
         clearInterval(waitForSearchResultTimer);
         if (Drupal.tingSearch.summary.ting.count == 0) {
-          // Remove existing zero-results text
-          $("#ting-result").empty();
-        	
           // Get search string from URL
           var href = window.location.href;
           var searchStr = href.substr(href.lastIndexOf('/') + 1);
