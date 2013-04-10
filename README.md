@@ -1,7 +1,8 @@
 Description
 -----------
 The module provides a form presented to the user after a search resulting in zero hits.
- 
+
+![Ding! Zero-hit Form](img/screenshot.jpg) 
 
 Installation
 ------------
