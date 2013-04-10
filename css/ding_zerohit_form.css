@@ -12,7 +12,7 @@
   padding: 0.3em 0;
   }
 
-#ting-result .webform-component-markup {
+#ting-result #webform-component-markup-text {
   background: url(../img/helping-hand.png) no-repeat scroll 0 0 transparent;
   margin-bottom: 1em;
   padding-left: 45%;
@@ -35,7 +35,7 @@
   }
 
 #ting-result .webform-component-textfield, 
-#ting-result .webform-component-email {
+#ting-result #webform-component-user-email {
   margin-left: 45%;
   width: 55%;
   }
