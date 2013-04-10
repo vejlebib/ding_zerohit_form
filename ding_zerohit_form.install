@@ -100,7 +100,7 @@ function _create_zerohit_form($lang) {
       'form_key' => 'user_name',
       'name' => ($lang == 'da' ? 'Brugerens navn' : 'Name of user'),
       'type' => 'textfield',
-      'value' => '%username',
+      'value' => '', // Intentionally left blank. We cannot use %username, since this is an auto-generated value for normal users on a ding-site
       'extra' => array(
         'disabled' => 0,
         'unique' => 0,
