@@ -57,8 +57,8 @@ function ding_zerohit_form_menu() {
   $items['ting/zerohit'] = array(
     'title' => 'Zero-hit confirmation',
     'page callback' => '_zerohit_confirmation',
-    'access callback' => 'node_access',
-    'access arguments' => array('view', 1),
+    'access callback' => 'user_access',
+    'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
 
