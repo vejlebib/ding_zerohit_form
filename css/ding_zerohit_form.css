@@ -41,7 +41,7 @@
   }
 
 #ting-result .webform-component-textfield .form-description, 
-#ting-result .webform-component-email .form-description {
+#ting-result #webform-component-user-email .form-description {
   width: 45%;
   }
 
