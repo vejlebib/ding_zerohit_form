@@ -187,6 +187,24 @@ function _create_zerohit_form($lang) {
       'mandatory' => '0',
       'page_num' => 1,
     ),
+    8 => array(
+      'cid' => '8',
+      'weight' => 8,
+      'pid' => '0',
+      'form_key' => 'searchstring',
+      'name' => ($lang == 'da' ? 'Søgestreng' : 'searchstring'),
+      'type' => 'textfield',
+      'value' => '%get[search]',
+      'extra' => array(
+        'disabled' => 0,
+        'unique' => 0,
+        'title_display' => 'none',
+        'description' => '',
+        'private' => TRUE,
+      ),
+      'mandatory' => '0',
+      'page_num' => 1,
+    ),
   );
 
   // Enter webform array.

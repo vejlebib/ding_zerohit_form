@@ -18,6 +18,10 @@
   padding-left: 45%;
   }
 
+#ting-result #webform-component-searchstring {
+  display: none;
+  }
+
 #ting-result .webform-component-textarea {
   float: left;
   width: 40%;
