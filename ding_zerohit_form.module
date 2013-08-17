@@ -20,7 +20,7 @@ function ding_zerohit_form_ctools_plugin_directory($module, $plugin) {
 */
 function ding_zerohit_form_init() {
   drupal_add_js(drupal_get_path('module', 'ding_zerohit_form') . '/js/ding_zerohit_form.js', 'module', 'footer', TRUE);
-  drupal_add_css(drupal_get_path('module', 'ding_zerohit_form') .'/css/ding_zerohit_form.css');
+  drupal_add_css(drupal_get_path('module', 'ding_zerohit_form') . '/css/ding_zerohit_form.css');
 }
 
 /**
@@ -73,7 +73,8 @@ function ding_zerohit_form_display_zerohit_form() {
   if (isset($webform_vars['webform_id'])) {
     $webform = webform_block_view($delta = 'client-block-' . $webform_vars['webform_id']);
     print $webform['content'];
-  } else {
+  } 
+  else {
     print t('No zero-hit form to show - go <a href="@url">configure Ding Zero-hit form</a>.', array('@url' => url("admin/settings/ting/zerohitform", array('absolute' => TRUE))));
   }
 }

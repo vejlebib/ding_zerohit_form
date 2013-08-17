@@ -1,4 +1,10 @@
 <?php
+/**
+* @file
+* Adminstrative settings.
+*
+* Allows setting which webform should be used as the zerohit form.
+*/
 
 /**
  * Administration UI for ding zero-hit form
@@ -24,9 +30,16 @@ function ding_zerohit_form_settings_form($form_state) {
   if (1 == 1) { //IF --webform is installed--
     $webform_types = webform_variable_get('webform_node_types');
     $webform_nodes = array();
+
     if ($webform_types) {
-      $placeholders = implode(', ', array_fill(0, count($webform_types), "'%s'"));
-      $result = db_query(db_rewrite_sql("SELECT n.nid,n.title FROM {node} n INNER JOIN {node_revisions} r ON n.vid = r.vid WHERE n.type IN ($placeholders)", 'n', 'nid', $webform_types), $webform_types);
+      $query = db_select('node', 'n');
+      $query->join('node_revisions', 'r', 'n.vid = r.vid');
+      $query
+        ->fields('n', array('nid', 'title'))
+        ->condition('n.type', $webform_types, 'IN')
+        ->addTag('node_access');
+      $result = $query->execute();
+
       while ($webform_node = db_fetch_object($result)) {
         $webform_nodes[$webform_node->nid] = $webform_node->title;
       }

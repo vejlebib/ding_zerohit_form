@@ -45,7 +45,7 @@ function _create_zerohit_form($lang) {
   $node->title = $node->name;
   $node->body = '';
   $node->type = 'webform';
-  $node->created = time();
+  $node->created = REQUEST_TIME;
   $node->changed = $node->created;
   $node->promote = 0; // Display on front page ? 1 : 0
   $node->sticky = 0;  // Display top of page ? 1 : 0
