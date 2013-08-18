@@ -1,14 +1,14 @@
 <?php
 /**
-* @file
-* Module to show a form when a Ting search returns 0 (zero) hits
-*/
+ * @file
+ * Module to show a form when a Ting search returns 0 (zero) hits
+ */
 
 /**
-* Implementation of hook_ctools_plugin_directory().
-*
-* Tells CTools (and thus Panels) where to look for plugin code.
-*/
+ * Implements hook_ctools_plugin_directory().
+ *
+ * Tells CTools (and thus Panels) where to look for plugin code.
+ */
 function ding_zerohit_form_ctools_plugin_directory($module, $plugin) {
   if ($module == 'ctools' || $module == 'panels') {
     return 'plugins/' . $plugin;
@@ -16,18 +16,18 @@ function ding_zerohit_form_ctools_plugin_directory($module, $plugin) {
 }
 
 /**
-* Implementation of hook_init().
-*/
+ * Implements hook_init().
+ */
 function ding_zerohit_form_init() {
   drupal_add_js(drupal_get_path('module', 'ding_zerohit_form') . '/js/ding_zerohit_form.js', 'module', 'footer', TRUE);
   drupal_add_css(drupal_get_path('module', 'ding_zerohit_form') . '/css/ding_zerohit_form.css');
 }
 
 /**
-* Implementation of hook_menu().
-*
-* @return array
-*/
+ * Implements hook_menu().
+ *
+ * @return array
+ */
 function ding_zerohit_form_menu() {
   // Get the module path
   $path = drupal_get_path('module', 'ding_zerohit_form') . '/includes';
@@ -42,7 +42,7 @@ function ding_zerohit_form_menu() {
     'access arguments' => array('access content'),
   );
 
-  $items['admin/settings/ting/zerohitform'] = array(
+  $items['admin/config/ting/zerohitform'] = array(
     'title' => 'Zero-hit form',
     'description' => 'Settings for the zero-hit form',
     'page callback' => 'drupal_get_form',
@@ -65,7 +65,7 @@ function ding_zerohit_form_menu() {
   return $items;
 }
 
-/*
+/**
  * Function returning the webform configured as the zero-hit form
  */
 function ding_zerohit_form_display_zerohit_form() {
@@ -73,7 +73,7 @@ function ding_zerohit_form_display_zerohit_form() {
   if (isset($webform_vars['webform_id'])) {
     $webform = webform_block_view($delta = 'client-block-' . $webform_vars['webform_id']);
     print $webform['content'];
-  } 
+  }
   else {
     print t('No zero-hit form to show - go <a href="@url">configure Ding Zero-hit form</a>.', array('@url' => url("admin/settings/ting/zerohitform", array('absolute' => TRUE))));
   }
@@ -109,9 +109,9 @@ function template_preprocess_zerohit_confirmation(&$vars) {
   $vars['user_name'] = check_plain($vars['submission']->name);
 }
 
-/*
-* Implements hook_theme().
-*/
+/**
+ * Implements hook_theme().
+ */
 function ding_zerohit_form_theme() {
   $items = array(
     'zerohit_confirmation' => array(

@@ -1,12 +1,14 @@
 <?php
 
 /**
- * @file ding_zerohit_form.install
+ * @file
+ * ding_zerohit_form.install
+ *
  * Install and uninstall code for ding_zerohit_form
  */
 
 /**
- * Implementation of hook_install().
+ * Implements hook_install().
  */
 function ding_zerohit_form_install() {
   // We create first an english form, and then a danish alternative - as we cannot reliably translate strings in the code during module installation.
@@ -15,7 +17,7 @@ function ding_zerohit_form_install() {
 }
 
 /**
- * Implementation of hook_uninstall().
+ * Implements hook_uninstall().
  */
 function ding_zerohit_form_uninstall() {
   // Load saved settings
@@ -39,20 +41,18 @@ function ding_zerohit_form_uninstall() {
  */
 function _create_zerohit_form($lang) {
   $node = new stdClass();
+  $node->type = 'webform';
+  node_object_prepare($node);
 
   //Main Node Fields
-  $node->name = ($lang == 'da' ? 'Nul-hits formular' : 'Zero-hit form');
-  $node->title = $node->name;
-  $node->body = '';
-  $node->type = 'webform';
-  $node->created = REQUEST_TIME;
-  $node->changed = $node->created;
+  $node->title = ($lang == 'da' ? 'Nul-hits formular' : 'Zero-hit form');
+  $node->language = LANGUAGE_NONE;
+  $node->body[$node->language][0]['format']  = 'full_html';
   $node->promote = 0; // Display on front page ? 1 : 0
   $node->sticky = 0;  // Display top of page ? 1 : 0
-  $node->format = 1;  // 1:Filtered HTML, 2: Full HTML
+  //$node->body['und'][0]['format'] = 1;  // 1:Filtered HTML, 2: Full HTML
   $node->status = 1;   // Published ? 1 : 0
-  $node->comment = 0;
-  $node->language = '';
+  $node->promote = 0; // Do not put this node to front page.
 
   // Webform emails array
   $emails = array();
@@ -61,27 +61,27 @@ function _create_zerohit_form($lang) {
   $components = array(
     1 => array(
       'cid' => '1',
+      'name' => ($lang == 'da' ? 'Markup tekst' : 'Markup text'),
+      'form_key' => 'markup_text',
+      'type' => 'markup',
+      'mandatory' => '0',
       'weight' => 1,
       'pid' => '0',
-      'form_key' => 'markup_text',
-      'name' => ($lang == 'da' ? 'Markup tekst' : 'Markup text'),
-      'type' => 'markup',
-      'value' => ($lang == 'da' ? '<h3>Der blev ikke fundet nogen materialer i biblioteksbasen på din søgning ("%get[search]"), men hjælpen er nær!</h3><ul><li>Du kan prøve den landsdækkende <a href="http://bibliotek.dk">Bibliotek.dk</a></li><li style="font-weight: bold;">eller du kan få bibliotekets personale til at hjælpe dig:</li></ul>' : '<h3>No results where found in the library collection in response to your search %get[search], but help is near!</h3><ul><li>You can try the national service <a href="http://bibliotek.dk">Bibliotek.dk</a></li><li style="font-weight: bold;">or you can have the library staff help you:</li></ul>'),
       'extra' => array(
         'format' => FILTER_FORMAT_DEFAULT,
         'private' => FALSE,
       ),
-      'mandatory' => '0',
       'page_num' => 1,
+      'value' => ($lang == 'da' ? '<h3>Der blev ikke fundet nogen materialer i biblioteksbasen på din søgning ("%get[search]"), men hjælpen er nær!</h3><ul><li>Du kan prøve den landsdækkende <a href="http://bibliotek.dk">Bibliotek.dk</a></li><li style="font-weight: bold;">eller du kan få bibliotekets personale til at hjælpe dig:</li></ul>' : '<h3>No results where found in the library collection in response to your search %get[search], but help is near!</h3><ul><li>You can try the national service <a href="http://bibliotek.dk">Bibliotek.dk</a></li><li style="font-weight: bold;">or you can have the library staff help you:</li></ul>'),
     ),
     2 => array(
       'cid' => '2',
+      'name' => ($lang == 'da' ? 'Brugerens beskrivelse' : 'Description by user'),
+      'form_key' => 'user_description',
+      'type' => 'textarea',
+      'mandatory' => '0',
       'weight' => 2,
       'pid' => '0',
-      'form_key' => 'user_description',
-      'name' => ($lang == 'da' ? 'Brugerens beskrivelse' : 'Description by user'),
-      'type' => 'textarea',
-      'value' => '',
       'extra' => array(
         'format' => FILTER_FORMAT_DEFAULT,
         'description' => ($lang == 'da' ? 'Beskriv her, hvad du søgte' : 'Please describe here what you where searching for'),
@@ -90,17 +90,17 @@ function _create_zerohit_form($lang) {
         'disabled' => '0',
         'private' => FALSE,
       ),
-      'mandatory' => '0',
       'page_num' => 1,
+      'value' => '',
     ),
     3 => array(
       'cid' => '3',
+      'name' => ($lang == 'da' ? 'Brugerens navn' : 'Name of user'),
+      'form_key' => 'user_name',
+      'type' => 'textfield',
+      'mandatory' => '1',
       'weight' => 3,
       'pid' => '0',
-      'form_key' => 'user_name',
-      'name' => ($lang == 'da' ? 'Brugerens navn' : 'Name of user'),
-      'type' => 'textfield',
-      'value' => '', // Intentionally left blank. We cannot use %username, since this is an auto-generated value for normal users on a ding-site
       'extra' => array(
         'disabled' => 0,
         'unique' => 0,
@@ -108,17 +108,17 @@ function _create_zerohit_form($lang) {
         'description' => ($lang == 'da' ? 'Dit navn *' : 'Your name *'),
         'private' => FALSE,
       ),
-      'mandatory' => '1',
       'page_num' => 1,
+      'value' => '', // Intentionally left blank. We cannot use %username, since this is an auto-generated value for normal users on a ding-site
     ),
     4 => array(
       'cid' => '4',
+      'name' => ($lang == 'da' ? 'Brugerens e-mail' : 'Users E-mail'),
+      'form_key' => 'user_email',
+      'type' => 'email',
+      'mandatory' => '1',
       'weight' => 4,
       'pid' => '0',
-      'form_key' => 'user_email',
-      'name' => ($lang == 'da' ? 'Brugerens e-mail' : 'Users E-mail'),
-      'type' => 'email',
-      'value' => '%useremail',
       'extra' => array(
         'unique' => 0,
         'disabled' => 0,
@@ -126,17 +126,17 @@ function _create_zerohit_form($lang) {
         'description' => ($lang == 'da' ? 'Din e-mail *' : 'Your e-mail *'),
         'private' => FALSE,
       ),
-      'mandatory' => '1',
       'page_num' => 1,
+      'value' => '%useremail',
     ),
     5 => array(
       'cid' => '5',
+      'name' => ($lang == 'da' ? 'Brugerens tlf.nr.' : 'Users phone no.'),
+      'form_key' => 'user_phone',
+      'type' => 'textfield',
+      'mandatory' => '0',
       'weight' => 5,
       'pid' => '0',
-      'form_key' => 'user_phone',
-      'name' => ($lang == 'da' ? 'Brugerens tlf.nr.' : 'Users phone no.'),
-      'type' => 'textfield',
-      'value' => '',
       'extra' => array(
         'disabled' => 0,
         'unique' => 0,
@@ -144,32 +144,32 @@ function _create_zerohit_form($lang) {
         'description' => ($lang == 'da' ? 'Dit tlf.nr.' : 'Your phone no.'),
         'private' => FALSE,
       ),
-      'mandatory' => '0',
       'page_num' => 1,
+      'value' => '',
     ),
     6 => array(
       'cid' => '6',
+      'name' => ($lang == 'da' ? 'Markup tekst 2' : 'Markup Text 2'),
+      'form_key' => 'markup_text2',
+      'type' => 'markup',
+      'mandatory' => '0',
       'weight' => 6,
       'pid' => '0',
-      'form_key' => 'markup_text2',
-      'name' => ($lang == 'da' ? 'Markup tekst 2' : 'Markup Text 2'),
-      'type' => 'markup',
-      'value' => ($lang == 'da' ? '<p>Felter med * skal udfyldes.</p><p>Din henvendelse vil blive besvaret så hurtigt som muligt.</p>' : '<p>Fields marked * are required.</p><p>We will respond to your question as soon as possible.</p>'),
       'extra' => array(
         'format' => FILTER_FORMAT_DEFAULT,
         'private' => FALSE,
       ),
-      'mandatory' => '0',
       'page_num' => 1,
+      'value' => ($lang == 'da' ? '<p>Felter med * skal udfyldes.</p><p>Din henvendelse vil blive besvaret så hurtigt som muligt.</p>' : '<p>Fields marked * are required.</p><p>We will respond to your question as soon as possible.</p>'),
     ),
     7 => array(
       'cid' => '7',
+      'name' => ($lang == 'da' ? 'Søgestreng' : 'searchstring'),
+      'form_key' => 'searchstring',
+      'type' => 'textfield',
+      'mandatory' => '0',
       'weight' => 7,
       'pid' => '0',
-      'form_key' => 'searchstring',
-      'name' => ($lang == 'da' ? 'Søgestreng' : 'searchstring'),
-      'type' => 'textfield',
-      'value' => '%get[search]',
       'extra' => array(
         'disabled' => 0,
         'unique' => 0,
@@ -177,8 +177,8 @@ function _create_zerohit_form($lang) {
         'description' => '',
         'private' => TRUE,
       ),
-      'mandatory' => '0',
       'page_num' => 1,
+      'value' => '%get[search]',
     ),
   );
 
@@ -194,14 +194,14 @@ function _create_zerohit_form($lang) {
     'auto_save' => '0',
     'submit_notice' => '0',
     'submit_text' => '',
-    'submit_limit' => '-1',
+    'submit_limit' => '-1', // User can submit more than once.
     'submit_interval' => '-1',
     'total_submit_limit' => '-1',
     'total_submit_interval' => '-1',
     'record_exists' => TRUE,
     'roles' => array(
-      0 => '1',
-      1 => '2',
+      0 => '1', // Anonymous user can submit this webform.
+      1 => '2', // Authenticated user can submit this webform.
     ),
     'emails' => $emails,
     'components' => $components,

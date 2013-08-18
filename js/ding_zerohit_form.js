@@ -1,9 +1,10 @@
 /**
-* @file
-* Inject a form when search returns 0 results.
-*
-*/
+ * @file
+ * Inject a form when search returns 0 results.
+ *
+ */
 (function ($) {
+/*
   $(document).ready(function($) {
     if ($('#ting-result').length != 0) {
       //...wait for the ting search to complete
@@ -24,4 +25,5 @@
       }, 1000);
     }
   });
+*/
 })(jQuery);

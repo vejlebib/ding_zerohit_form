@@ -1,10 +1,10 @@
 <?php
 /**
-* @file
-* Adminstrative settings.
-*
-* Allows setting which webform should be used as the zerohit form.
-*/
+ * @file
+ * Adminstrative settings.
+ *
+ * Allows setting which webform should be used as the zerohit form.
+ */
 
 /**
  * Administration UI for ding zero-hit form
@@ -33,14 +33,14 @@ function ding_zerohit_form_settings_form($form_state) {
 
     if ($webform_types) {
       $query = db_select('node', 'n');
-      $query->join('node_revisions', 'r', 'n.vid = r.vid');
+      $query->join('node_revision', 'r', 'n.vid = r.vid');
       $query
         ->fields('n', array('nid', 'title'))
         ->condition('n.type', $webform_types, 'IN')
         ->addTag('node_access');
       $result = $query->execute();
 
-      while ($webform_node = db_fetch_object($result)) {
+      foreach ($result as $webform_node) {
         $webform_nodes[$webform_node->nid] = $webform_node->title;
       }
     }
