@@ -13,7 +13,7 @@ Download and enable the module. Ding! Zerohit form depends on webform being inst
 Configuration of the module
 ---------------------------
 
-### Settings in the administration section (/admin/settings/ting/zerohitform)
+### Settings in the administration section (/admin/config/ting/zerohitform)
 
 * "Webform ID": Points to an existing webform on the website. 
 

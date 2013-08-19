@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Module to show a form when a Ting search returns 0 (zero) hits
+ * Module to show a form when searches returns 0 (zero) hits
  */
 
 /**
@@ -19,7 +19,7 @@ function ding_zerohit_form_ctools_plugin_directory($module, $plugin) {
  * Implements hook_init().
  */
 function ding_zerohit_form_init() {
-  drupal_add_js(drupal_get_path('module', 'ding_zerohit_form') . '/js/ding_zerohit_form.js', 'module', 'footer', TRUE);
+  //drupal_add_js(drupal_get_path('module', 'ding_zerohit_form') . '/js/ding_zerohit_form.js', 'module', 'footer', TRUE);
   drupal_add_css(drupal_get_path('module', 'ding_zerohit_form') . '/css/ding_zerohit_form.css');
 }
 
