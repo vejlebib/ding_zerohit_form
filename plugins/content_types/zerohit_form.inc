@@ -25,11 +25,11 @@ if (module_exists('search')) {
 function ding_zerohit_form_content_type_render($subtype, $conf, $panel_args, $context) {
   global $pager_page_array, $pager_total;
   $block = new stdClass();
-  //dpm($conf);
-  //dpm($panel_args);
-  
-  // Get webform
+
+    // Get webform
   if (isset($conf['webform_id']) && !empty($conf['webform_id'])) {
+    // add to GET array to pass on search string to webform
+    $_GET['search'] = $panel_args[0];//$results->search_key;
     $webform = webform_block_view($delta = 'client-block-' . $conf['webform_id']);
   }
   else {
@@ -38,20 +38,18 @@ function ding_zerohit_form_content_type_render($subtype, $conf, $panel_args, $co
   
   if ($conf['type'] == 'ting_search') {
     if ($pager_total[0] == TRUE) {
-      $results = drupal_static('ting_search_results');
-      //dpm($results);
-      $total = $results->numTotalObjects;
       $block->title = t('Zerohit (in Ting search) form text');
-      $block->content = '<div class="ting-search-amount-block">ZERO-HIT (Ting search), total was ' . $total . '</div>';
-      $block->content .= $webform['content'];
+      //$results = drupal_static('ting_search_results');
+      //$total = $results->numTotalObjects;
+      //$block->content = '<div class="ting-search-amount-block">ZERO-HIT (Ting search), total was ' . $total . '</div>';
     }
   }
   else {
     $block->title = t('Zerohit (in Node search) form text');
-    $block->content = '<div class="ting-search-amount-block">ZERO-HIT (nodes)</div>';
-    $block->content .= $webform['content'];
   }
-  
+
+  $block->content .= $webform['content'];
+
   return $block;
 }
 
