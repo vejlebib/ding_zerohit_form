@@ -1,60 +1,60 @@
-#ting-result .webform-client-form {
+.page-search-ting .webform-client-form {
   margin: 0 1em;
   width: 90%;
   }
 
-#ting-result .webform-client-form li {
+.page-search-ting .webform-client-form li {
   list-style: disc outside none;
   margin: 0 1em;
   }
 
-#ting-result .webform-component .form-item {
+.page-search-ting .webform-component .form-item {
   padding: 0.3em 0;
   }
 
-#ting-result #webform-component-markup-text {
+.page-search-ting #webform-component-markup-text {
   background: url(../img/helping-hand.png) no-repeat scroll 0 0 transparent;
   margin-bottom: 1em;
   padding-left: 45%;
   }
 
-#ting-result #webform-component-searchstring {
+.page-search-ting #webform-component-searchstring {
   display: none;
   }
 
-#ting-result .webform-component-textarea {
+.page-search-ting .webform-component-textarea {
   float: left;
   width: 40%;
   }
 
-#ting-result .webform-client-form textarea {
+.page-search-ting .webform-client-form textarea {
   height: 12em;
   width: 100%;
   }
 
-#ting-result .webform-client-form .form-text {
+.page-search-ting .webform-client-form .form-text {
   float: right;
   margin-left: 1em;
   width: 50%;
   }
 
-#ting-result .webform-component-textfield, 
-#ting-result #webform-component-user-email {
+.page-search-ting .webform-component-textfield, 
+.page-search-ting #webform-component-user-email {
   margin-left: 45%;
   width: 55%;
   }
 
-#ting-result .webform-component-textfield .form-description, 
-#ting-result #webform-component-user-email .form-description {
+.page-search-ting .webform-component-textfield .form-description, 
+.page-search-ting #webform-component-user-email .form-description {
   width: 45%;
   }
 
-#ting-result .webform-component-display {
+.page-search-ting .webform-component-display {
   clear: both;
   padding-top: 2em;
   }
 
-#ting-result .form-submit {
+.page-search-ting .form-submit {
   height: 3em;
   width: 40%;
 } 
