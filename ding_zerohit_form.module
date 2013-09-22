@@ -19,7 +19,6 @@ function ding_zerohit_form_ctools_plugin_directory($module, $plugin) {
  * Implements hook_init().
  */
 function ding_zerohit_form_init() {
-  //drupal_add_js(drupal_get_path('module', 'ding_zerohit_form') . '/js/ding_zerohit_form.js', 'module', 'footer', TRUE);
   drupal_add_css(drupal_get_path('module', 'ding_zerohit_form') . '/css/ding_zerohit_form.css');
 }
 
@@ -33,14 +32,6 @@ function ding_zerohit_form_menu() {
   $path = drupal_get_path('module', 'ding_zerohit_form') . '/includes';
 
   $items = array();
-
-  $items['ding/zerohitform/%'] = array(
-    'title' => 'Ding zerohit form',
-    'description' => 'Returns a form for user submission in response to a zero-hit search result',
-    'page callback' => 'ding_zerohit_form_display_zerohit_form',
-    'page arguments' => array(2),
-    'access arguments' => array('access content'),
-  );
 
   $items['admin/config/ting/zerohitform'] = array(
     'title' => 'Zero-hit form',
@@ -63,20 +54,6 @@ function ding_zerohit_form_menu() {
   );
 
   return $items;
-}
-
-/**
- * Function returning the webform configured as the zero-hit form
- */
-function ding_zerohit_form_display_zerohit_form() {
-  $webform_vars = variable_get('ding_zerohit_form', array());
-  if (isset($webform_vars['webform_id'])) {
-    $webform = webform_block_view($delta = 'client-block-' . $webform_vars['webform_id']);
-    print $webform['content'];
-  }
-  else {
-    print t('No zero-hit form to show - go <a href="@url">configure Ding Zero-hit form</a>.', array('@url' => url("admin/settings/ting/zerohitform", array('absolute' => TRUE))));
-  }
 }
 
 /**
