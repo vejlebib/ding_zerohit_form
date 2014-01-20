@@ -35,13 +35,17 @@ function ding_zerohit_form_content_type_render($subtype, $conf, $panel_args, $co
   else {
     $webform['content'] = t('No zero-hit form to show - go <a href="@url">configure Ding Zero-hit form</a>.', array('@url' => url("admin/config/ting/zerohitform", array('absolute' => TRUE))));
   }
-  
+
   if ($conf['type'] == 'ting_search') {
     if ($pager_total[0] == TRUE) {
       $block->title = t('Zerohit (in Ting search) form text');
-      //$results = drupal_static('ting_search_results');
-      //$total = $results->numTotalObjects;
-      //$block->content = '<div class="ting-search-amount-block">ZERO-HIT (Ting search), total was ' . $total . '</div>';
+      $results = drupal_static('ting_search_results');
+      $total = $results->numTotalObjects;
+
+      // Return now if there are results - zero-hit form should only be shown when result count is 0
+      if ($total > 0) {
+        return;
+      }
     }
   }
   else {
