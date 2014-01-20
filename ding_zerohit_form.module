@@ -70,9 +70,8 @@ function _zerohit_confirmation() {
 
     // Confirmation message from current zerohit form
     $webform_node = node_load($values['webform_id']);
-    //$confirmation_message = 'hello from current zerohit form';
 
-    return theme('zerohit_confirmation', $webform_node, $submission);
+    return theme('zerohit_confirmation', array('webform_node' => $webform_node, 'submission' => $submission));
   }
 }
 
@@ -80,7 +79,15 @@ function _zerohit_confirmation() {
  * Prepare for theming of the zerohit form submission confirmation.
  */
 function template_preprocess_zerohit_confirmation(&$vars) {
-  $confirmation = check_markup($vars['webform_node']->webform['confirmation'], $vars['node']->webform['confirmation_format'], FALSE);
+  // Default to plain text as filter if ding_wysiwyg if not found
+  if ($filter = filter_format_load('ding_wysiwyg')) {
+    $filter = 'ding_wysiwyg';
+  }
+  else {
+    $filter = 'plain_text';
+  }
+
+  $confirmation = check_markup($vars['webform_node']->webform['confirmation'], $filter);
   $vars['confirmation_message'] = $confirmation;
   $vars['user_description'] = check_plain($vars['submission']->data[2]['value'][0]);
   $vars['user_name'] = check_plain($vars['submission']->name);
@@ -93,7 +100,7 @@ function ding_zerohit_form_theme() {
   $items = array(
     'zerohit_confirmation' => array(
       'arguments' => array(
-        'webform_node' => array(),
+        'webform_node' => NULL,
         'submission' => array(),
       ),
       'template' => 'zerohit-confirmation',
